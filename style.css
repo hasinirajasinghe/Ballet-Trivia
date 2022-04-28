@@ -1,0 +1,43 @@
+body {
+    background-image: url("./images/ballet-background.jpg");
+    height: 100vh;
+    background-position: center;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.main-container-start-page {
+    height: 200px;
+    width: 350px;
+}
+
+.main-container-levels-page {
+    height: 460px;
+    width: 800px;
+    transition: 1s ease-in;
+    /* background-color: #e4c8ce; */
+    /* opacity: 0.8; */
+}
+
+#main-container {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px);
+}
+
+h1 {
+    text-align: center;
+}
+
+#start {
+    display: block;
+    margin: 15px auto;
+}
+
+#how-to-play {
+    display: block;
+    margin: 15px auto;
+}

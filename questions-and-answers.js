@@ -1,4 +1,4 @@
-//Contains all the questions and answers for each level of the game 
+//Contains all the questions, correct answers and the choices for each level of the game 
 
 const grade1 = [
     {

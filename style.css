@@ -7,11 +7,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .main-container-start-page {
-    height: 200px;
+    height: 220px;
     width: 350px;
 }
 
@@ -19,8 +18,12 @@ body {
     height: 460px;
     width: 800px;
     transition: 1s ease-in;
-    /* background-color: #e4c8ce; */
-    /* opacity: 0.8; */
+}
+
+.main-container-how-to-play-page {
+    height: 400px;
+    width: 600px;
+    /* transition: 1s ease-in; */
 }
 
 #main-container {
@@ -28,16 +31,147 @@ body {
     backdrop-filter: blur(15px);
 }
 
-h1 {
+.h1 {
+    font-family: 'Square Peg', cursive;
+    font-size: 75px;
+    margin: 5px auto;
     text-align: center;
 }
 
 #start {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 25px;
+    background-color: #e4c8ce;
+    border: 3px solid #aa8a8a;
+    border-radius: 20px;
     display: block;
-    margin: 15px auto;
+    margin: auto;
 }
 
 #how-to-play {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 25px;
+    background-color: #e4c8ce;
+    border: 3px solid #aa8a8a;
+    border-radius: 20px;
     display: block;
+    margin: 10px auto;
+}
+
+#instructions {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 30px;
+    background-color: #cfa3a3;
+    border: 3px solid #a28585;
+    border-radius: 20px;
+    width: 17em;
+    margin: 40px auto;
+    padding: auto;
+    text-align: center;
+}
+
+#return-button {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 25px;
+    background-color: #e4c8ce;
+    border: 3px solid #aa8a8a;
+    border-radius: 20px;
+    display: block;
+    margin: 5px auto;
+}
+
+#new-level-button {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 40px;
+    background-color: #cfa3a3;
+    border: 3px solid #a28585;
+    border-radius: 20px;
+    width: 9em;
+    margin: 20px;
+    padding: auto;
+    text-align: center;
+}
+
+#question {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 40px;
+    background-color: #cfa3a3;
+    border: 3px solid #a28585;
+    border-radius: 20px;
+    width: 19em;
+    margin: auto;
+    padding: auto 0;
+    text-align: center;
+}
+
+#choices-container {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 35px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.choices {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 35px;
+    background-color: #e4c8ce;
+    border: 3px solid #aa8a8a;
+    border-radius: 20px;
+    height: 105px;
+    width: 10.5em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px 3px;
+}
+
+.choices:hover {
+    background-color: #cfa3a3;
+}
+
+#score-container {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 40px;
+    background-color: #aa8a8a;
+    border: 3px solid #776370;
+    border-radius: 20px;
+    width: 7em;
     margin: 15px auto;
+    padding: auto;
+    text-align: center;
+}
+
+#display-message {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 30px;
+    background-color: #cfa3a3;
+    border: 3px solid #a28585;
+    border-radius: 20px;
+    margin: 10px 15px;
+    padding: auto 0;
+    text-align: center;
+}
+
+#results {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 28px;
+    background-color: #e4c8ce;
+    border: 3px solid #aa8a8a;
+    border-radius: 20px;
+    height: 235px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 15px;
+    padding-left: 5px;
+}
+
+#reset-button {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 25px;
+    background-color: #e4c8ce;
+    border: 3px solid #aa8a8a;
+    border-radius: 20px;
+    display: block;
+    margin: auto;
 }

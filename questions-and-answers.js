@@ -1,4 +1,4 @@
-//Contains all the questions, correct answers and the choices for each level of the game 
+// Contains all the questions, correct answers and the choices for each level of the game 
 
 const grade1 = [
     {
@@ -50,9 +50,9 @@ const grade2 = [
         choices: ["4th position, devant, derriere", "5th position, devant, derriere", "2nd position, devant, derriere", "3rd position, devant, derriere"]
     },
     {
-        question: "",
-        correctAnswer: "",
-        choices: ["", "", "", ""]
+        question: "In ballet terms, what happens to the feet in an Assemble",
+        correctAnswer: "They should join together in the air before landing",
+        choices: ["They should join together in the air before landing", "They shouldn't join together in the air before landing", "Assemble is not in the air", "None of the above"]
     },
 ]
 
@@ -63,9 +63,9 @@ const grade3 = [
         choices: ["5", "4", "6", "12"]
     },
     {
-        question: "How should the weight of the body be distributed on the feet",
+        question: "How should the weight of the body be distributed on the feet?",
         correctAnswer: "All three (Big toe, Little toe and Heel)",
-        choices: ["All three (Big toe, Little toe and Heel)", "Big toe", "Little toe", "Heel"]
+        choices: ["All three", "Big toe", "Little toe", "Heel"]
     },
     {
         question: "What does pirouette mean?",
@@ -75,12 +75,12 @@ const grade3 = [
     {
         question: "How many ways can you turn?",
         correctAnswer: "Endehors and Endedans",
-        choices: ["Endehors and Endedans", "Endehors", "Endedans", ""]
+        choices: ["Endehors and Endedans", "Endehors", "Endedans", "Neither"]
     },
     {
         question: "What is grand battement?",
         correctAnswer: "A throwing of the leg into the air",
-        choices: ["A throwing of the leg into the air", "The step of the cat", "Beating and striking", "Unfolding of the led into the air"]
+        choices: ["Throwing of leg into the air", "The step of the cat", "Beating and striking", "Unfolding leg into the air"]
     },
 ]
 
@@ -101,9 +101,9 @@ const grade4 = [
         choices: ["A step and a glide", "A step", "A glide", "A spring"]
     },
     {
-        question: "Is an arabesque terre or enl’/air?",
+        question: "Is an arabesque terre or enl’air?",
         correctAnswer: "Either",
-        choices: ["Either", "Terre", "Enl’/air", "Neither "]
+        choices: ["Either", "Terre", "Enl’air", "Neither "]
     },
     {
         question: "How many steps are in Pas de Bourree?",
@@ -162,8 +162,8 @@ const majorGrades = [
         choices: ["A walking step", "A gliding step", "Broken step", "A spring step"]
     },
     {
-        question: "",
-        correctAnswer: "",
-        choices: ["", "", "", ""]
+        question: "What are the basic Pas de Bourrees",
+        correctAnswer: "Devant, Derriere, Under, Over",
+        choices: ["Devant, Derriere, Under, and Over", "Devant, Derriere, Left, and Right", "Front, Behind, left, Right, Under, Over", "Front, Behind, Under, and Over"]
     },
 ]

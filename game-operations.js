@@ -32,7 +32,7 @@
 
 // Global variable declarations 
 
-let questionSet;   
+let questionSet = [];   
 let questionIndex = 0; 
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
@@ -78,6 +78,12 @@ resetButton.id = "reset-button";
 // Adding event listeners
 startButton.addEventListener('click', startTheGame);
 howToPlayButton.addEventListener('click', howToPlay);
+returnButton.addEventListener('click', returnToMainPage)
+resetButton.addEventListener('click', reset)
+choice1.addEventListener('click', checkAnswerAndDisplayQuestion)
+choice2.addEventListener('click', checkAnswerAndDisplayQuestion)
+choice3.addEventListener('click', checkAnswerAndDisplayQuestion)
+choice4.addEventListener('click', checkAnswerAndDisplayQuestion)
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
 
@@ -129,9 +135,8 @@ function howToPlay() {
     mainContainer.replaceChildren();
     mainContainer.className = "main-container-how-to-play-page"
     instructions.innerHTML = messages.gameInstructions
-    returnButton.innerHTML = "Return"
+    returnButton.innerHTML = "RETURN"
     mainContainer.append(instructions, returnButton)
-    returnButton.addEventListener('click', returnToMainPage)
 }
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
@@ -174,19 +179,6 @@ function levelSelect(e) {
 function setUpQuestionView() {
     // Clears the levels view of the game
     mainContainer.replaceChildren();
-
-    const checkAnswerAndDisplayQuestion = function(e) {
-        // Pass it to check anwer only because we need to know what the user clicked
-        checkAnswer(e)
-        questionIndex++;
-        displayQuestion()
-    }
-
-    // Event listners set for each choice to listen for user input click
-    choice1.addEventListener('click', checkAnswerAndDisplayQuestion)
-    choice2.addEventListener('click', checkAnswerAndDisplayQuestion)
-    choice3.addEventListener('click', checkAnswerAndDisplayQuestion)
-    choice4.addEventListener('click', checkAnswerAndDisplayQuestion)
     
     // Displays score tag
     scoreContainer.innerHTML = 'Score: ';
@@ -194,28 +186,27 @@ function setUpQuestionView() {
     // Setting inital score to 0 and storing it inside the span
     scoreSpan.innerHTML = 0;
     scoreContainer.appendChild(scoreSpan)
-    
     // Adding the newly created questions and choices to the main container
     mainContainer.append(scoreContainer, question, choicesContainer)
     choicesContainer.append(choice1, choice2, choice3, choice4)
 
     // Invoke to display the very first question after level selection
     displayQuestion()
+}
 
-    function displayQuestion() {
-        if (questionIndex >= questionSet.length) {
-            displayResults();
-            return;
-        }
-        let currentQuestion = questionSet[questionIndex]
-        question.innerHTML = currentQuestion.question
-        // To randomize the choices 
-        currentQuestion.choices.sort(() => (Math.random() > .5) ? 1 : -1);
-        choice1.innerHTML = currentQuestion.choices[0]
-        choice2.innerHTML = currentQuestion.choices[1]
-        choice3.innerHTML = currentQuestion.choices[2]
-        choice4.innerHTML = currentQuestion.choices[3]
+function displayQuestion() {
+    if (questionIndex >= questionSet.length) {
+        displayResults();
+        return;
     }
+    let currentQuestion = questionSet[questionIndex]
+    question.innerHTML = currentQuestion.question
+    // To randomize the choices 
+    currentQuestion.choices.sort(() => (Math.random() > .5) ? 1 : -1);
+    choice1.innerHTML = currentQuestion.choices[0]
+    choice2.innerHTML = currentQuestion.choices[1]
+    choice3.innerHTML = currentQuestion.choices[2]
+    choice4.innerHTML = currentQuestion.choices[3]
 }
 
 function checkAnswer(e) {
@@ -226,8 +217,16 @@ function checkAnswer(e) {
     } else {
         questionSet[questionIndex].correctlyAnswered = false;
     }
+    console.log("QI before" + questionIndex)
+    questionIndex++;
+    console.log("QI after" + questionIndex)
 }
 
+function checkAnswerAndDisplayQuestion(e) {
+    // Pass it to check anwer only because we need to know what the user clicked
+    checkAnswer(e)
+    displayQuestion()
+}
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
 
 // FOURTH VIEW: DISPLAY SCORE, RESULTS, MESSEGE AND RESET BUTTON 
@@ -245,9 +244,17 @@ function displayResults() {
         results.append(q.question)
         results.append(q.correctlyAnswered)
     })
-    resetButton.innerHTML = "Reset"
-    resetButton.addEventListener('click', returnToMainPage)
+    resetButton.innerHTML = "RESET"
     mainContainer.append(scoreContainer, displayMessage, results, resetButton);
+}
+
+// Reset some of the values 
+function reset() {
+    questionSet = [];
+    questionIndex = 0;
+    scoreSpan.innerHTML = 0;
+    results.replaceChildren();
+    returnToMainPage();
 }
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 

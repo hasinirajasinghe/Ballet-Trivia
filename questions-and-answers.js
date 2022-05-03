@@ -64,7 +64,7 @@ const grade3 = [
     },
     {
         question: "How should the weight of the body be distributed on the feet?",
-        correctAnswer: "All three (Big toe, Little toe and Heel)",
+        correctAnswer: "All three",
         choices: ["All three", "Big toe", "Little toe", "Heel"]
     },
     {
@@ -79,7 +79,7 @@ const grade3 = [
     },
     {
         question: "What is grand battement?",
-        correctAnswer: "A throwing of the leg into the air",
+        correctAnswer: "Throwing of leg into the air",
         choices: ["Throwing of leg into the air", "The step of the cat", "Beating and striking", "Unfolding leg into the air"]
     },
 ]
@@ -162,7 +162,7 @@ const majorGrades = [
         choices: ["A walking step", "A gliding step", "Broken step", "A spring step"]
     },
     {
-        question: "What are the basic Pas de Bourrees",
+        question: "What are the basic Pas de Bourrees?",
         correctAnswer: "Devant, Derriere, Under, Over",
         choices: ["Devant, Derriere, Under, and Over", "Devant, Derriere, Left, and Right", "Front, Behind, left, Right, Under, Over", "Front, Behind, Under, and Over"]
     },

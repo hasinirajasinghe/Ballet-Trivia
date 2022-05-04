@@ -46,13 +46,13 @@ const grade2 = [
     },
     {
         question: "What are extreme ends of Rond de Jambe a terre?",
-        correctAnswer: "4th position, devant, derriere",
-        choices: ["4th position, devant, derriere", "5th position, devant, derriere", "2nd position, devant, derriere", "3rd position, devant, derriere"]
+        correctAnswer: "4th position, devant, and derriere",
+        choices: ["4th position, devant, and derriere", "5th position, devant, and derriere", "2nd position, devant, and derriere", "3rd position, devant, and derriere"]
     },
     {
         question: "In ballet terms, what happens to the feet in an Assemble",
         correctAnswer: "They should join together in the air before landing",
-        choices: ["They should join together in the air before landing", "They shouldn't join together in the air before landing", "Assemble is not in the air", "None of the above"]
+        choices: ["They should join together in the air before landing", "They shouldn't join together in the air before landing", "Assemble is not done in the air", "Theey should join in the air and come apart at landing"]
     },
 ]
 
@@ -101,9 +101,9 @@ const grade4 = [
         choices: ["A step and a glide", "A step", "A glide", "A spring"]
     },
     {
-        question: "Is an arabesque terre or enl’air?",
+        question: "Is an arabesque terre or en l’air?",
         correctAnswer: "Either",
-        choices: ["Either", "Terre", "Enl’air", "Neither "]
+        choices: ["Either", "Terre", "En l’air", "Neither "]
     },
     {
         question: "How many steps are in Pas de Bourree?",
@@ -130,7 +130,7 @@ const grade5 = [
     },
     {
         question: "What is meant by petit retires?",
-        correctAnswer: "Small retire movements ",
+        correctAnswer: "Small retire movements",
         choices: ["Small retire movements", "A step of the cat", "Retire movements", "Big retire movements"]
     },
     {
@@ -153,8 +153,8 @@ const majorGrades = [
     },
     {
         question: "What are chaines?",
-        correctAnswer: "linked half turns",
-        choices: ["linked half turns", "linked full turns", "whipped turn", "turn on one leg"]
+        correctAnswer: "Linked half turns",
+        choices: ["Linked half turns", "Linked full turns", "Whipped turn", "Turn on one leg"]
     },
     {
         question: "What is a Pas Marche?",
@@ -163,7 +163,7 @@ const majorGrades = [
     },
     {
         question: "What are the basic Pas de Bourrees?",
-        correctAnswer: "Devant, Derriere, Under, Over",
-        choices: ["Devant, Derriere, Under, and Over", "Devant, Derriere, Left, and Right", "Front, Behind, left, Right, Under, Over", "Front, Behind, Under, and Over"]
+        correctAnswer: "Devant, Derriere, Under, and Over",
+        choices: ["Devant, Derriere, Under, and Over", "Devant, Derriere, Left, and Right", "Front, Behind, Left, Right and Over", "Front, Behind, Under, and Over"]
     },
 ]

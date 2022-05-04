@@ -48,6 +48,10 @@ body {
     margin: auto;
 }
 
+#start:hover {
+    cursor: pointer;
+}
+
 #how-to-play {
     font-family: 'Patrick Hand', cursive;
     font-size: 25px;
@@ -56,6 +60,10 @@ body {
     border-radius: 20px;
     display: block;
     margin: 10px auto;
+}
+
+#how-to-play:hover {
+    cursor: pointer;
 }
 
 #instructions {
@@ -80,6 +88,10 @@ body {
     margin: 5px auto;
 }
 
+#return-button:hover {
+    cursor: pointer;
+}
+
 #new-level-button {
     font-family: 'Patrick Hand', cursive;
     font-size: 40px;
@@ -87,9 +99,14 @@ body {
     border: 3px solid #a28585;
     border-radius: 20px;
     width: 9em;
-    margin: 20px;
+    margin: 15px 20px;
     padding: auto;
     text-align: center;
+}
+
+#new-level-button:hover {
+    background-color: #e4c8ce;
+    cursor: pointer;
 }
 
 #question {
@@ -127,14 +144,15 @@ body {
 
 .choices:hover {
     background-color: #cfa3a3;
+    cursor: pointer;
 }
 
 #score-container {
     font-family: 'Patrick Hand', cursive;
     font-size: 40px;
-    background-color: #aa8a8a;
-    border: 3px solid #776370;
-    border-radius: 20px;
+    background-color: #b78282;
+    border: 3px solid #a07777;
+    border-radius: 15px;
     width: 7em;
     margin: 15px auto;
     padding: auto;
@@ -146,7 +164,7 @@ body {
     font-size: 30px;
     background-color: #cfa3a3;
     border: 3px solid #a28585;
-    border-radius: 20px;
+    border-radius: 15px;
     margin: 10px 15px;
     padding: auto 0;
     text-align: center;
@@ -154,16 +172,30 @@ body {
 
 #results {
     font-family: 'Patrick Hand', cursive;
-    font-size: 28px;
+    font-size: 29px;
     background-color: #e4c8ce;
     border: 3px solid #aa8a8a;
-    border-radius: 20px;
+    border-radius: 10px;
     height: 235px;
     display: block;
     align-items: center;
     justify-content: center;
     margin: 10px 15px;
     padding-left: 5px;
+    overflow-y: auto;
+}
+
+#results::-webkit-scrollbar { 
+    width: 8px;
+}
+
+#results::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+#results::-webkit-scrollbar-thumb {
+    background-color: #aa8a8a;
+    border-radius: 10px;
 }
 
 #reset-button {
@@ -174,4 +206,24 @@ body {
     border-radius: 20px;
     display: block;
     margin: auto;
+}
+
+#reset-button:hover {
+    cursor: pointer;
+}
+
+.each-answer {
+    float: left;
+    width: 97%;
+    height: 50px;
+    margin: 10px;
+}
+
+#check-mark {
+    float: right;
+    width: 45px;
+}
+
+#cross-mark {
+    float: right;
 }

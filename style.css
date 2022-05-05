@@ -1,5 +1,5 @@
 body {
-    background-image: url("./images/ballet-background.jpg");
+    background-image: url("/assets/images/ballet-background.jpg");
     height: 100vh;
     background-position: center;
     background-size: cover; 
@@ -12,6 +12,7 @@ body {
 .main-container-start-page {
     height: 220px;
     width: 350px;
+    transition: 1s ease-out;
 }
 
 .main-container-levels-page {
@@ -23,7 +24,13 @@ body {
 .main-container-how-to-play-page {
     height: 400px;
     width: 600px;
-    /* transition: 1s ease-in; */
+    transition: 1s ease-in;
+}
+
+.main-container-score-history-page {
+    height: 370px;
+    width: 340px;
+    transition: 1s ease-out;
 }
 
 #main-container {
@@ -119,6 +126,9 @@ body {
     margin: auto;
     padding: auto 0;
     text-align: center;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 
 #choices-container {
@@ -140,6 +150,9 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2px 3px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 
 .choices:hover {
@@ -185,6 +198,20 @@ body {
     overflow-y: auto;
 }
 
+#score-history-container {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 29px;
+    background-color: #e4c8ce;
+    border: 3px solid #aa8a8a;
+    border-radius: 10px;
+    height: 175px;
+    display: block;
+    justify-content: center;
+    margin: 10px 15px;
+    padding-left: 5px;
+    overflow-y: auto;
+}
+
 #results::-webkit-scrollbar { 
     width: 8px;
 }
@@ -198,17 +225,58 @@ body {
     border-radius: 10px;
 }
 
+#score-history-container::-webkit-scrollbar { 
+    width: 8px;
+}
+
+#score-history-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+#score-history-container::-webkit-scrollbar-thumb {
+    background-color: #aa8a8a;
+    border-radius: 10px;
+}
+
 #reset-button {
     font-family: 'Patrick Hand', cursive;
     font-size: 25px;
     background-color: #e4c8ce;
     border: 3px solid #aa8a8a;
     border-radius: 20px;
-    display: block;
+    display: inline;
     margin: auto;
 }
 
 #reset-button:hover {
+    cursor: pointer;
+}
+
+#score-history {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 25px;
+    background-color: #e4c8ce;
+    border: 3px solid #aa8a8a;
+    border-radius: 20px;
+    display: inline;
+    margin: auto;
+}
+
+#score-history:hover {
+    cursor: pointer;
+}
+
+#clear-score-history-button {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 25px;
+    background-color: #e4c8ce;
+    border: 3px solid #aa8a8a;
+    border-radius: 20px;
+    display: inline;
+    margin: auto;
+}
+
+#clear-score-history-button:hover {
     cursor: pointer;
 }
 

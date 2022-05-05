@@ -21,12 +21,18 @@
                 // Increment score by 1    
             // Move on to the next question 
     
-// Last View 
+// 4th View 
 // Contains results from each round 
     // Show the final score of the player
     // Sisplay a encouraging message
     // Show which questions were correctly answered and incorrectly answered 
     // Show a restart button to take the player back to the main page 
+
+// 5th View
+// Contains the score history from each game
+    // Will show the score of every game
+    // If the player wants to clear the scores history (insert button)
+    // Show 'play again' to take the player back to the main view
     
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
 
@@ -34,6 +40,8 @@
 
 let questionSet = [];   
 let questionIndex = 0; 
+let scoreHistory = []
+let gameNumber = 1;
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
 
@@ -41,7 +49,7 @@ let questionIndex = 0;
 
 // Selecting elements via DOM 
 let mainContainer = document.getElementById('main-container');
-let mainHeader = document.getElementById('main-header')
+let mainHeader = document.getElementById('main-header');
 let startButton = document.getElementById('start');
 let howToPlayButton = document.getElementById('how-to-play');
 let returnButton = document.createElement('button')
@@ -53,37 +61,47 @@ let choice1 = document.createElement('div');
 let choice2 = document.createElement('div');
 let choice3 = document.createElement('div');
 let choice4 = document.createElement('div');
-let scoreContainer = document.createElement('div')
+let scoreContainer = document.createElement('div');
 let scoreSpan = document.createElement('span');
-let displayMessage = document.createElement('div')
-let results = document.createElement('div')
-let resetButton = document.createElement('button')
+let displayMessage = document.createElement('div');
+let results = document.createElement('div');
+let resetButton = document.createElement('button');
+let scoreHistoryHeader = document.createElement('h1');
+let scoreHistoryButton = document.createElement('button');
+let scoreHistoryContainer = document.createElement('div');
+let clearScoreHistoryButton = document.createElement('button')
 
 // Adding IDs and Classes to elements 
-instructions.id = "instructions";
-returnButton.id = "return-button"
-levelsHeader.className = "h1"
-question.id = "question";
-choicesContainer.id = "choices-container";
+instructions.id = 'instructions';
+returnButton.id = 'return-button';
+levelsHeader.className = 'h1';
+question.id = 'question';
+choicesContainer.id = 'choices-container';
 choice1.className = 'choices';
 choice2.className = 'choices';
 choice3.className = 'choices';
 choice4.className = 'choices';
-scoreContainer.id = "score-container"
-scoreSpan.id = "score"
-displayMessage.id = "display-message";
-results.id = "results";
-resetButton.id = "reset-button";
+scoreContainer.id = 'score-container';
+scoreSpan.id = 'score';
+displayMessage.id = 'display-message';
+results.id = 'results';
+resetButton.id = 'reset-button';
+scoreHistoryHeader.id = 'score-history-header'
+scoreHistoryButton.id = 'score-history';
+scoreHistoryContainer.id = 'score-history-container';
+clearScoreHistoryButton.id = 'clear-score-history-button';
 
 // Adding event listeners
 startButton.addEventListener('click', startTheGame);
 howToPlayButton.addEventListener('click', howToPlay);
-returnButton.addEventListener('click', returnToMainPage)
-resetButton.addEventListener('click', reset)
-choice1.addEventListener('click', checkAnswerAndDisplayQuestion)
-choice2.addEventListener('click', checkAnswerAndDisplayQuestion)
-choice3.addEventListener('click', checkAnswerAndDisplayQuestion)
-choice4.addEventListener('click', checkAnswerAndDisplayQuestion)
+returnButton.addEventListener('click', returnToMainPage);
+resetButton.addEventListener('click', reset);
+scoreHistoryButton.addEventListener('click', showScoreHistory);
+clearScoreHistoryButton.addEventListener('click', clearScoreHistory)
+choice1.addEventListener('click', checkAnswerAndDisplayQuestion);
+choice2.addEventListener('click', checkAnswerAndDisplayQuestion);
+choice3.addEventListener('click', checkAnswerAndDisplayQuestion);
+choice4.addEventListener('click', checkAnswerAndDisplayQuestion);
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
 
@@ -93,10 +111,11 @@ choice4.addEventListener('click', checkAnswerAndDisplayQuestion)
 function returnToMainPage(){
     mainContainer.replaceChildren();
     mainContainer.className = "main-container-start-page";
-    startButton.id = "start"
-    howToPlayButton.id = "how-to-play"
-    // scoreSpan.innerHTML = 0;
-    mainContainer.append(mainHeader, startButton, howToPlayButton)
+    setTimeout(function(){
+        startButton.id = "start";
+        howToPlayButton.id = "how-to-play";
+        mainContainer.append(mainHeader, startButton, howToPlayButton);
+    }, 1000);
 }
 
 // When the start button is clicked on, content of the first view is cleared and content of the second view is built on 
@@ -107,7 +126,7 @@ function startTheGame() {
     levelsHeader.innerHTML = "Levels"
     // Load the levels page elements after the UI is done transitioning to a bigger view
     setTimeout(function(){
-        mainContainer.append(levelsHeader)
+        mainContainer.append(levelsHeader);
 
         // List of level names 
         const levelNames = [
@@ -127,8 +146,8 @@ function startTheGame() {
             newLevelButton.addEventListener('click', levelSelect);
             mainContainer.append(newLevelButton);
             // Adding a return button in case the user would like to refer back to instructions 
-            returnButton.innerHTML = "RETURN"
-            mainContainer.append(returnButton)
+            returnButton.innerHTML = "RETURN";
+            mainContainer.append(returnButton);
         }); 
     }, 1000);
 };
@@ -136,11 +155,13 @@ function startTheGame() {
 // Instructions view 
 function howToPlay() {
     mainContainer.replaceChildren();
-    mainContainer.className = "main-container-how-to-play-page"
-    // Importing the message from the instructions-and-display-messages file 
-    instructions.innerHTML = messages.gameInstructions
-    returnButton.innerHTML = "RETURN"
-    mainContainer.append(instructions, returnButton)
+    mainContainer.className = "main-container-how-to-play-page";
+    setTimeout(function(){
+        // Importing the message from the instructions-and-display-messages file 
+        instructions.innerHTML = messages.gameInstructions;
+        returnButton.innerHTML = "RETURN";
+        mainContainer.append(instructions, returnButton);
+    }, 1000);
 }
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
@@ -174,7 +195,7 @@ function levelSelect(e) {
     }
     // Randomize question set before question view is set up
     questionSet.sort(() => (Math.random() > .5) ? 1 : -1);
-    setUpQuestionView()
+    setUpQuestionView();
 }
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
@@ -184,35 +205,34 @@ function levelSelect(e) {
 function setUpQuestionView() {
     // Clears the levels view of the game
     mainContainer.replaceChildren();
-    
-    // Displays score header
-    scoreContainer.innerHTML = 'Score: ';
-    
-    // Setting inital score to 0 and storing it inside the span
-    scoreSpan.innerHTML = 0;
-    scoreContainer.appendChild(scoreSpan)
-    // Adding the newly created containers, questions and choices to the main container
-    mainContainer.append(scoreContainer, question, choicesContainer)
-    choicesContainer.append(choice1, choice2, choice3, choice4)
+        // Displays score header
+        scoreContainer.innerHTML = 'Score: ';
+        
+        // Setting inital score to 0 and storing it inside the span
+        scoreSpan.innerHTML = 0;
+        scoreContainer.appendChild(scoreSpan);
+        // Adding the newly created containers, questions and choices to the main container
+        mainContainer.append(scoreContainer, question, choicesContainer);
+        choicesContainer.append(choice1, choice2, choice3, choice4);
 
-    // Invoke to display the very first question after level selection
-    displayQuestion()
+        // Invoke to display the very first question after level selection
+        displayQuestion();
 }
 
 // Displays questions and choices when invoked
 function displayQuestion() {
-    if (questionIndex >= questionSet.length) {
-        displayResults();
-        return;
-    }
-    let currentQuestion = questionSet[questionIndex]
-    question.innerHTML = currentQuestion.question
-    // To randomize the choices 
-    currentQuestion.choices.sort(() => (Math.random() > .5) ? 1 : -1);
-    choice1.innerHTML = currentQuestion.choices[0]
-    choice2.innerHTML = currentQuestion.choices[1]
-    choice3.innerHTML = currentQuestion.choices[2]
-    choice4.innerHTML = currentQuestion.choices[3]
+        if (questionIndex >= questionSet.length) {
+            displayResults();
+            return;
+        }
+        let currentQuestion = questionSet[questionIndex]
+        question.innerHTML = currentQuestion.question;
+        // To randomize the choices 
+        currentQuestion.choices.sort(() => (Math.random() > .5) ? 1 : -1);
+        choice1.innerHTML = currentQuestion.choices[0];
+        choice2.innerHTML = currentQuestion.choices[1];
+        choice3.innerHTML = currentQuestion.choices[2];
+        choice4.innerHTML = currentQuestion.choices[3];
 }
 
 // Check correct answer against the provided correct answet in the questions set object
@@ -232,9 +252,9 @@ function checkAnswer(e) {
 // Invoked upon user input of an answer to a question
 function checkAnswerAndDisplayQuestion(e) {
     // Pass it to check anwer only because we need to know what the user clicked before moving on the next question
-    checkAnswer(e)
+    checkAnswer(e);
     // Displays the next questiog
-    displayQuestion()
+    displayQuestion();
 }
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
@@ -243,9 +263,10 @@ function checkAnswerAndDisplayQuestion(e) {
 
 // When invoked clears content of the current view diaplys the final score, a message, results and reset button.
 function displayResults() {
+    updateScoreHistory();
     mainContainer.replaceChildren();
     scoreContainer.innerHTML = "Final Score: ";
-    scoreContainer.appendChild(scoreSpan);
+    scoreContainer.appendChild(scoreSpan)
     // Importing the messages from the instructions-and-display-messages file 
     if (parseInt(scoreSpan.innerHTML) === 5) {
         displayMessage.innerHTML = messages.winningMessage;
@@ -254,25 +275,26 @@ function displayResults() {
     }
     // Matching questions with users answers before appending to the display
     questionSet.forEach((q) => {
-        let eachAnswer = document.createElement('div')
-        eachAnswer.className = "each-answer"
-        eachAnswer.append(q.question)
+        let eachAnswer = document.createElement('div');
+        eachAnswer.className = "each-answer";
+        eachAnswer.append(q.question);
         // Check whether the answer is correct or incorrect and create an element with the correct icon (check-mark or cross-mark)
         if (q.correctlyAnswered) {
             let checkMark = document.createElement('img');
-            checkMark.src = '/images/check-mark.png';
+            checkMark.src = '/assets/images/check-mark.png';
             eachAnswer.append(checkMark);
-            checkMark.id = 'check-mark'
+            checkMark.id = 'check-mark';
         } else {
             let crossMark = document.createElement('img');
-            crossMark.src = '/images/cross-mark.png';
+            crossMark.src = '/assets/images/cross-mark.png';
             eachAnswer.append(crossMark);
-            crossMark.id = 'cross-mark'
+            crossMark.id = 'cross-mark';
         }
         results.append(eachAnswer)
     })
-    resetButton.innerHTML = "RESET"
-    mainContainer.append(scoreContainer, displayMessage, results, resetButton);
+    resetButton.innerHTML = "PLAY AGAIN";
+    scoreHistoryButton.innerHTML = "SHOW SCORE HISTORY"
+    mainContainer.append(scoreContainer, displayMessage, results, resetButton, scoreHistoryButton);
 }
 
 // Resets the game 
@@ -280,8 +302,41 @@ function reset() {
     questionSet = [];
     questionIndex = 0;
     scoreSpan.innerHTML = 0;
+    gameNumber++;
     results.replaceChildren();
     returnToMainPage();
+}
+
+//~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
+
+// FIFTH VIEW: SCORE HISTORY
+
+function updateScoreHistory() {
+    let score = {
+        game: gameNumber,
+        scoreValue: parseInt(scoreSpan.innerHTML)
+    }
+    scoreHistory.push(score);
+}
+
+function clearScoreHistory() {
+    scoreHistory = [];
+    showScoreHistory();
+}
+
+function showScoreHistory() {
+    mainContainer.replaceChildren();
+    scoreHistoryContainer.replaceChildren();
+    mainContainer.className = 'main-container-score-history-page';
+    scoreHistoryHeader.className = 'h1';
+    scoreHistoryHeader.innerHTML = "Score History";
+    clearScoreHistoryButton.innerHTML = "CLEAR SCORES"
+    scoreHistory.forEach((score) => {
+        let scoreDiv = document.createElement('div');
+        scoreDiv.innerHTML = `Game ${score.game} - ${score.scoreValue} Point(s)`;
+        scoreHistoryContainer.append(scoreDiv);
+    })
+    mainContainer.append(scoreHistoryHeader, scoreHistoryContainer, resetButton, clearScoreHistoryButton)
 }
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 

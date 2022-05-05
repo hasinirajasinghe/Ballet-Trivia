@@ -52,7 +52,7 @@ const grade2 = [
     {
         question: "In ballet terms, what happens to the feet in an Assemble",
         correctAnswer: "They should join together in the air before landing",
-        choices: ["They should join together in the air before landing", "They shouldn't join together in the air before landing", "Assemble is not done in the air", "Theey should join in the air and come apart at landing"]
+        choices: ["They should join together in the air before landing", "They shouldn't join together in the air before landing", "Assemble is not done in the air", "They should join in the air and come apart at landing"]
     },
 ]
 

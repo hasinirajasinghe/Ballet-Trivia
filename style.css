@@ -1,5 +1,5 @@
 body {
-    background-image: url("/assets/images/ballet-background.jpg");
+    background-image: url("./assets/images/ballet-background.jpg");
     height: 100vh;
     background-position: center;
     background-size: cover; 

@@ -12,11 +12,11 @@ body {
 .main-container-start-page {
     height: 220px;
     width: 350px;
-    transition: 1s ease-out;
+    transition: 0.75s ease-out;
 }
 
 .main-container-levels-page {
-    height: 460px;
+    height: 490px;
     width: 800px;
     transition: 1s ease-in;
 }
@@ -28,9 +28,9 @@ body {
 }
 
 .main-container-score-history-page {
-    height: 370px;
+    height: 400px;
     width: 340px;
-    transition: 1s ease-out;
+    transition: 0.75s ease-out;
 }
 
 #main-container {
@@ -204,11 +204,11 @@ body {
     background-color: #e4c8ce;
     border: 3px solid #aa8a8a;
     border-radius: 10px;
-    height: 175px;
+    height: 160px;
     display: block;
     justify-content: center;
     margin: 10px 15px;
-    padding-left: 5px;
+    padding-left: 10px;
     overflow-y: auto;
 }
 
@@ -241,11 +241,12 @@ body {
 #reset-button {
     font-family: 'Patrick Hand', cursive;
     font-size: 25px;
-    background-color: #e4c8ce;
-    border: 3px solid #aa8a8a;
+    background-color: #cfa3a3;
+    border: 3px solid #a28585;
     border-radius: 20px;
-    display: inline;
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    margin: 3px auto;
 }
 
 #reset-button:hover {
@@ -255,11 +256,12 @@ body {
 #score-history {
     font-family: 'Patrick Hand', cursive;
     font-size: 25px;
-    background-color: #e4c8ce;
-    border: 3px solid #aa8a8a;
+    background-color: #cfa3a3;
+    border: 3px solid #a28585;
     border-radius: 20px;
-    display: inline;
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    margin: 3px auto;
 }
 
 #score-history:hover {
@@ -269,11 +271,12 @@ body {
 #clear-score-history-button {
     font-family: 'Patrick Hand', cursive;
     font-size: 25px;
-    background-color: #e4c8ce;
-    border: 3px solid #aa8a8a;
+    background-color: #cfa3a3;
+    border: 3px solid #a28585;
     border-radius: 20px;
-    display: inline;
-    margin: auto;
+    display: flex;
+    justify-content:space-between;
+    margin: 8px auto;
 }
 
 #clear-score-history-button:hover {

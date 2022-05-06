@@ -22,7 +22,7 @@ const grade1 = [
         choices: ["To Spring", "To Rise", "To Bend", "To Skip"]
     },
     {
-        question: "How many basic arm positions are there? ",
+        question: "How many basic arm positions are there?",
         correctAnswer: "5",
         choices: ["5","12","6","3"]
     },
@@ -30,14 +30,14 @@ const grade1 = [
 
 const grade2 = [
     {
-        question: "What does a terre mean?",
-        correctAnswer: "On the ground ",
+        question: "What does a Terre mean?",
+        correctAnswer: "On the ground",
         choices: ["On the ground", "In the air", "To be lifted", "None"]
     },
     {
         question: "What is Demi Detourne?",
         correctAnswer: "Half turn",
-        choices: ["Half turn", "Full turn", "Linked turn", "Double turn "]
+        choices: ["Half turn", "Full turn", "Linked turn", "Double turn"]
     },
     {
         question: "What is a Chagement?",
@@ -50,7 +50,7 @@ const grade2 = [
         choices: ["4th position, devant, and derriere", "5th position, devant, and derriere", "2nd position, devant, and derriere", "3rd position, devant, and derriere"]
     },
     {
-        question: "In ballet terms, what happens to the feet in an Assemble",
+        question: "In ballet terms, what happens to the feet in an Assemble?",
         correctAnswer: "They should join together in the air before landing",
         choices: ["They should join together in the air before landing", "They shouldn't join together in the air before landing", "Assemble is not done in the air", "They should join in the air and come apart at landing"]
     },
@@ -103,7 +103,7 @@ const grade4 = [
     {
         question: "Is an arabesque terre or en l’air?",
         correctAnswer: "Either",
-        choices: ["Either", "Terre", "En l’air", "Neither "]
+        choices: ["Either", "Terre", "En l’air", "Neither"]
     },
     {
         question: "How many steps are in Pas de Bourree?",
@@ -114,7 +114,7 @@ const grade4 = [
 
 const grade5 = [
     {
-        question: "What is the meaning of coupe, fouette, raccourci",
+        question: "What is the meaning of coupe, fouette, raccourci?",
         correctAnswer: "To cut, whip and return",
         choices: ["To cut, whip and return", "To step, spring, and return", " To whip, cut and return", "To  spring, step and return"]
     },
@@ -144,7 +144,7 @@ const majorGrades = [
     {
         question: "What is the difference between a Battement Tendu and a Glisse?",
         correctAnswer: "A battement tendu does not leave the floor",
-        choices: ["A battement tendu does not leave the floor", "A battement glisse does not leave the floor", "A battement tendu does  leave the floor", "A battement glisse does  leave the floor"]
+        choices: ["A battement tendu does not leave the floor", "A battement glisse does not leave the floor", "A battement tendu does leave the floor", "A battement glisse does leave the floor"]
     },
     {
         question: "How many types of releves are there?",

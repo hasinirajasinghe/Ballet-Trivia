@@ -11,7 +11,7 @@
 
 // 2nd View 
 // Contains the levels View 
-    // If player clicks on one out of the six levels, prompt the first question from the radomized list of questions.
+    // If player clicks on one out of the six levels, prompt the first question from the randomize list of questions.
 
 // 3rd View and onwards 
 // Questions and answers view
@@ -24,7 +24,7 @@
 // 4th View 
 // Contains results from each round 
     // Show the final score of the player
-    // Sisplay a encouraging message
+    // Display a encouraging message
     // Show which questions were correctly answered and incorrectly answered 
     // Show a restart button to take the player back to the main page 
 
@@ -69,7 +69,7 @@ let resetButton = document.createElement('button');
 let scoreHistoryHeader = document.createElement('h1');
 let scoreHistoryButton = document.createElement('button');
 let scoreHistoryContainer = document.createElement('div');
-let clearScoreHistoryButton = document.createElement('button')
+let clearScoreHistoryButton = document.createElement('button');
 
 // Adding IDs and Classes to elements 
 instructions.id = 'instructions';
@@ -86,7 +86,7 @@ scoreSpan.id = 'score';
 displayMessage.id = 'display-message';
 results.id = 'results';
 resetButton.id = 'reset-button';
-scoreHistoryHeader.id = 'score-history-header'
+scoreHistoryHeader.id = 'score-history-header';
 scoreHistoryButton.id = 'score-history';
 scoreHistoryContainer.id = 'score-history-container';
 clearScoreHistoryButton.id = 'clear-score-history-button';
@@ -97,7 +97,7 @@ howToPlayButton.addEventListener('click', howToPlay);
 returnButton.addEventListener('click', returnToMainPage);
 resetButton.addEventListener('click', reset);
 scoreHistoryButton.addEventListener('click', showScoreHistory);
-clearScoreHistoryButton.addEventListener('click', clearScoreHistory)
+clearScoreHistoryButton.addEventListener('click', clearScoreHistory);
 choice1.addEventListener('click', checkAnswerAndDisplayQuestion);
 choice2.addEventListener('click', checkAnswerAndDisplayQuestion);
 choice3.addEventListener('click', checkAnswerAndDisplayQuestion);
@@ -110,19 +110,19 @@ choice4.addEventListener('click', checkAnswerAndDisplayQuestion);
 // When invoked will return the user to the main page 
 function returnToMainPage(){
     mainContainer.replaceChildren();
-    mainContainer.className = "main-container-start-page";
+    mainContainer.className = 'main-container-start-page';
     setTimeout(function(){
         startButton.id = "start";
         howToPlayButton.id = "how-to-play";
         mainContainer.append(mainHeader, startButton, howToPlayButton);
-    }, 1000);
+    }, 750);
 }
 
 // When the start button is clicked on, content of the first view is cleared and content of the second view is built on 
 function startTheGame() {
     mainContainer.replaceChildren();
     // Begining of creating the second view: Showing the user the different levels of difficulty
-    mainContainer.className = "main-container-levels-page";
+    mainContainer.className = 'main-container-levels-page';
     levelsHeader.innerHTML = "Levels"
     // Load the levels page elements after the UI is done transitioning to a bigger view
     setTimeout(function(){
@@ -155,7 +155,7 @@ function startTheGame() {
 // Instructions view 
 function howToPlay() {
     mainContainer.replaceChildren();
-    mainContainer.className = "main-container-how-to-play-page";
+    mainContainer.className = 'main-container-how-to-play-page';
     setTimeout(function(){
         // Importing the message from the instructions-and-display-messages file 
         instructions.innerHTML = messages.gameInstructions;
@@ -205,18 +205,40 @@ function levelSelect(e) {
 function setUpQuestionView() {
     // Clears the levels view of the game
     mainContainer.replaceChildren();
-        // Displays score header
-        scoreContainer.innerHTML = 'Score: ';
-        
-        // Setting inital score to 0 and storing it inside the span
-        scoreSpan.innerHTML = 0;
-        scoreContainer.appendChild(scoreSpan);
-        // Adding the newly created containers, questions and choices to the main container
-        mainContainer.append(scoreContainer, question, choicesContainer);
-        choicesContainer.append(choice1, choice2, choice3, choice4);
+    // Displays score header
+    scoreContainer.innerHTML = 'Score: ';
+    
+    // Setting inital score to 0 and storing it inside the span
+    scoreSpan.innerHTML = 0;
+    scoreContainer.appendChild(scoreSpan);
+    // Adding the newly created containers, questions and choices to the main container
+    mainContainer.append(scoreContainer, question, choicesContainer);
+    choicesContainer.append(choice1, choice2, choice3, choice4);
 
-        // Invoke to display the very first question after level selection
-        displayQuestion();
+    // Invoke to display the very first question after level selection
+    displayQuestion();
+}
+
+// Invoked upon user input of an answer to a question
+function checkAnswerAndDisplayQuestion(e) {
+    // Pass it to check anwer only because we need to know what the user clicked before moving on the next question
+    checkAnswer(e);
+    // Displays the next questiog
+    displayQuestion();
+}
+
+// Check correct answer against the provided correct answet in the questions set object
+function checkAnswer(e) {
+    let currentChoice = e.target;
+    if (currentChoice.innerHTML === questionSet[questionIndex].correctAnswer) {
+        scoreSpan.innerHTML++;
+        // Adding a new property to the question-set object, to keep track of correct and incorrect questions in the order the user is answering them
+        questionSet[questionIndex].correctlyAnswered = true;
+    } else {
+        questionSet[questionIndex].correctlyAnswered = false;
+    }
+    // Increments to display the next questions after answer has been checked
+    questionIndex++;
 }
 
 // Displays questions and choices when invoked
@@ -235,31 +257,9 @@ function displayQuestion() {
         choice4.innerHTML = currentQuestion.choices[3];
 }
 
-// Check correct answer against the provided correct answet in the questions set object
-function checkAnswer(e) {
-    let currentChoice = e.target;
-    if (currentChoice.innerHTML === questionSet[questionIndex].correctAnswer) {
-        scoreSpan.innerHTML++;
-        // Adding a new property to the question set object, to keep track of correct and incorrect questions in the order the user is answering them
-        questionSet[questionIndex].correctlyAnswered = true;
-    } else {
-        questionSet[questionIndex].correctlyAnswered = false;
-    }
-    // Increments to display the next questions after answer has been checked
-    questionIndex++;
-}
-
-// Invoked upon user input of an answer to a question
-function checkAnswerAndDisplayQuestion(e) {
-    // Pass it to check anwer only because we need to know what the user clicked before moving on the next question
-    checkAnswer(e);
-    // Displays the next questiog
-    displayQuestion();
-}
-
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 
 
-// FOURTH VIEW: DISPLAY SCORE, RESULTS, MESSEGE AND RESET BUTTON 
+// FOURTH VIEW: DISPLAY FINAL SCORE, MESSAGE, RESULTS, SCORE HISTORY AND RESET BUTTON 
 
 // When invoked clears content of the current view diaplys the final score, a message, results and reset button.
 function displayResults() {
@@ -276,7 +276,7 @@ function displayResults() {
     // Matching questions with users answers before appending to the display
     questionSet.forEach((q) => {
         let eachAnswer = document.createElement('div');
-        eachAnswer.className = "each-answer";
+        eachAnswer.className = 'each-answer';
         eachAnswer.append(q.question);
         // Check whether the answer is correct or incorrect and create an element with the correct icon (check-mark or cross-mark)
         if (q.correctlyAnswered) {
@@ -290,10 +290,10 @@ function displayResults() {
             eachAnswer.append(crossMark);
             crossMark.id = 'cross-mark';
         }
-        results.append(eachAnswer)
+        results.append(eachAnswer);
     })
     resetButton.innerHTML = "PLAY AGAIN";
-    scoreHistoryButton.innerHTML = "SHOW SCORE HISTORY"
+    scoreHistoryButton.innerHTML = "SHOW SCORE HISTORY";
     mainContainer.append(scoreContainer, displayMessage, results, resetButton, scoreHistoryButton);
 }
 
@@ -311,6 +311,7 @@ function reset() {
 
 // FIFTH VIEW: SCORE HISTORY
 
+// Update score history by creating a new object to store game round number and the final score
 function updateScoreHistory() {
     let score = {
         game: gameNumber,
@@ -319,24 +320,30 @@ function updateScoreHistory() {
     scoreHistory.push(score);
 }
 
+// Clears the whole score history when invoked 
 function clearScoreHistory() {
     scoreHistory = [];
+    // To refresh the view otherwise it'll keep showing the current view
     showScoreHistory();
 }
 
+// Displays score histoy and choices to reset the game or clear the history
 function showScoreHistory() {
     mainContainer.replaceChildren();
+    // Because the score history container is repopulated every round, the previous history needs to be cleared 
     scoreHistoryContainer.replaceChildren();
     mainContainer.className = 'main-container-score-history-page';
-    scoreHistoryHeader.className = 'h1';
-    scoreHistoryHeader.innerHTML = "Score History";
-    clearScoreHistoryButton.innerHTML = "CLEAR SCORES"
-    scoreHistory.forEach((score) => {
-        let scoreDiv = document.createElement('div');
-        scoreDiv.innerHTML = `Game ${score.game} - ${score.scoreValue} Point(s)`;
-        scoreHistoryContainer.append(scoreDiv);
-    })
-    mainContainer.append(scoreHistoryHeader, scoreHistoryContainer, resetButton, clearScoreHistoryButton)
+    setTimeout(function(){
+        scoreHistoryHeader.className = 'h1';
+        scoreHistoryHeader.innerHTML = "Score History";
+        clearScoreHistoryButton.innerHTML = "CLEAR SCORES"
+        scoreHistory.forEach((score) => {
+            let scoreDiv = document.createElement('div');
+            scoreDiv.innerHTML = `Game ${score.game} - ${score.scoreValue} Point(s)`;
+            scoreHistoryContainer.append(scoreDiv);
+        })
+        mainContainer.append(scoreHistoryHeader, scoreHistoryContainer, resetButton, clearScoreHistoryButton)
+    }, 750);
 }
 
 //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~// 

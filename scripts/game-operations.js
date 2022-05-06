@@ -281,12 +281,12 @@ function displayResults() {
         // Check whether the answer is correct or incorrect and create an element with the correct icon (check-mark or cross-mark)
         if (q.correctlyAnswered) {
             let checkMark = document.createElement('img');
-            checkMark.src = '/assets/images/check-mark.png';
+            checkMark.src = './assets/images/check-mark.png';
             eachAnswer.append(checkMark);
             checkMark.id = 'check-mark';
         } else {
             let crossMark = document.createElement('img');
-            crossMark.src = '/assets/images/cross-mark.png';
+            crossMark.src = './assets/images/cross-mark.png';
             eachAnswer.append(crossMark);
             crossMark.id = 'cross-mark';
         }
